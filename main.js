@@ -7,7 +7,7 @@ for (var i =0; i<n; i++) {
     ctx.fillStyle = color.toHexString();
     console.log(ctx.fillStyle)
     ctx.fillRect(i*(200/n), 0, 2, 200);
-    color = color.add(new Colour(5, 0, 0));
+    color = Colour.getRandomColour();
 }
 // ctx.fillRect(10, 10, 150, 100);
 
