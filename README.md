@@ -1,5 +1,5 @@
 # adamwood.co.uk
-My portfolio page. 
+My portfolio page
 
 More coming soon... 
 
