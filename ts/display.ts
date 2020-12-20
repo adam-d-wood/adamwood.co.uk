@@ -9,6 +9,8 @@ class Display {
 
     constructor(canvas: any) {
         this.canvas = canvas;
+        this.width = this.canvas.width;
+        this.height = this.canvas.height;
         this.ctx = canvas.getContext("2d");
         this.bottomLeft = [-5, -5];
         this.topRight = [5, 5];
