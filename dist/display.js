@@ -6,7 +6,7 @@ class Display {
         this.topRight = [5, 5];
     }
     plot(table) {
-        let imageData = this.ctx.getImageData();
+        let imageData = this.ctx.getImageData(0, 0, this.width, this.height);
         let imageArray = imageData.data;
         for (let coord of table) {
             let displayCoord = this.toDisplayCoords(coord[0], coord[1]);

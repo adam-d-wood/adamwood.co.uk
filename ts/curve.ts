@@ -10,7 +10,7 @@ class ExplicitCurve {
         const startX: number = Math.max(display.bottomLeft[0], start);
         const endX: number = Math.min(display.topRight[0], end);
         const dx: number = display.getXUnitsPerPixel();
-        let table: number[][];
+        let table: number[][] = [];
         for (let x = startX; x < endX; x += dx) {
             table.push([x, this.y(x)])
         }

@@ -15,7 +15,7 @@ class Display {
     }
 
     public plot(table: number[][]): void {
-        let imageData: ImageData = this.ctx.getImageData();
+        let imageData: ImageData = this.ctx.getImageData(0, 0, this.width, this.height);
         let imageArray: Uint8ClampedArray = imageData.data;
         for (let coord of table) {
             let displayCoord: number[] = this.toDisplayCoords(coord[0], coord[1]);
