@@ -16,7 +16,7 @@ function main() {
     //     color = Colour.getRandomColour();
     // }
     let y = x => x**2;
-    const curve = new ExplicitCurve()
+    const curve = new ExplicitCurve(y);
     curve.plot(display, 0, 4);
     
 }
