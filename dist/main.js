@@ -16,6 +16,6 @@ function main() {
     // }
     let y = x => x ** 2;
     const curve = new ExplicitCurve(y);
-    curve.plot(display, 0, 4);
+    curve.plot(display, -4, 4);
 }
 // ctx.fillRect(10, 10, 150, 100);

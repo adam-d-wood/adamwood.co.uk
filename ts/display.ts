@@ -22,11 +22,11 @@ class Display {
         for (let coord of table) {
             let displayCoord: number[] = this.toDisplayCoords(coord[0], coord[1]);
             let index = this.coordToIndex(displayCoord);
-            const colour = new Colour(0, 0, 0)
+            const colour = new Colour(255, 0, 0)
             imageArray[index] = colour.r;
             imageArray[index+1] = colour.g;
             imageArray[index+2] = colour.b;
-            imageArray[index+3] = 1;
+            imageArray[index+3] = 255;
         }
         this.ctx.putImageData(imageData, 0, 0);
 
@@ -38,9 +38,9 @@ class Display {
     }
 
     public toDisplayCoords(x: number, y: number): number[] {
-        const newX: number = (x - this.bottomLeft[0]) / this.getXUnitsPerPixel();
+        const newX: number = Math.floor((x - this.bottomLeft[0]) / this.getXUnitsPerPixel());
         const inverseY: number = (y - this.bottomLeft[1]) / this.getYUnitsPerPixel();
-        const newY: number = this.height - inverseY;
+        const newY: number = Math.floor(this.height - inverseY);
         return [newX, newY];
     }
 
