@@ -1,9 +1,19 @@
 class ExplicitCurve {
 
     y: (x:number) => number;
+    start: number;
+    end: number;
+    colour: Colour;
 
-    constructor(y: (x: number) => number) {
+    constructor(
+    y: (x: number) => number,
+    start: number,
+    end: number,
+    colour: Colour) {
         this.y = y;
+        this.start = start;
+        this.end = end;
+        this.colour = colour;
     }
 
     getTable(display: Display, start: number, end: number): number[][] {
@@ -17,13 +27,13 @@ class ExplicitCurve {
         return table;
     }
 
-    pixelPlot(display: Display, start: number, end: number): void {
-        const table = this.getTable(display, start, end);
+    pixelPlot(display: Display): void {
+        const table = this.getTable(display, this.start, this.end);
         display.pixelPlot(table);
     }
 
-    lineJoinedPlot(display: Display, start: number, end: number, colour: Colour): void {
-        const table = this.getTable(display, start, end);
-        display.lineJoinedPlot(table, colour);
+    lineJoinedPlot(display: Display): void {
+        const table = this.getTable(display, this.start, this.end);
+        display.lineJoinedPlot(table, this.colour);
     }
 }
