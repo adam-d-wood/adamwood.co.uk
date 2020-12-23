@@ -3,7 +3,7 @@ $(function () {
 });
 function main() {
     var canvas = document.getElementById("display");
-    const grey = new Colour(10, 10, 10);
+    const grey = new Colour(40, 40, 40);
     let display = new Display(canvas, grey);
     let y = x => Math.sin(x);
     const curve = new ExplicitCurve(y);
