@@ -12,8 +12,12 @@ class ExplicitCurve {
         }
         return table;
     }
-    plot(display, start, end) {
+    pixelPlot(display, start, end) {
         const table = this.getTable(display, start, end);
-        display.plot(table);
+        display.pixelPlot(table);
+    }
+    lineJoinedPlot(display, start, end) {
+        const table = this.getTable(display, start, end);
+        display.lineJoinedPlot(table);
     }
 }

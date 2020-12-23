@@ -17,8 +17,13 @@ class ExplicitCurve {
         return table;
     }
 
-    plot(display: Display, start: number, end: number): void {
+    pixelPlot(display: Display, start: number, end: number): void {
         const table = this.getTable(display, start, end);
-        display.plot(table);
+        display.pixelPlot(table);
+    }
+
+    lineJoinedPlot(display: Display, start: number, end: number): void {
+        const table = this.getTable(display, start, end);
+        display.lineJoinedPlot(table);
     }
 }

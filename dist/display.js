@@ -7,7 +7,7 @@ class Display {
         this.bottomLeft = [-5, -5];
         this.topRight = [5, 5];
     }
-    plot(table) {
+    pixelPlot(table) {
         let imageData = this.ctx.getImageData(0, 0, this.width, this.height);
         let imageArray = imageData.data;
         for (let coord of table) {
@@ -21,14 +21,28 @@ class Display {
         }
         this.ctx.putImageData(imageData, 0, 0);
     }
+    lineJoinedPlot(table) {
+        const curveColour = new Colour(255, 0, 0);
+        this.ctx.strokeStyle = curveColour.toHexString();
+        ;
+        this.ctx.lineWidth = 10;
+        console.log("strokestyle", this.ctx.strokeStyle);
+        this.ctx.beginPath();
+        // this.ctx.moveTo(0, 0);
+        for (let coord of table) {
+            let displayCoord = this.toDisplayCoords(coord[0], coord[1]);
+            this.ctx.lineTo(displayCoord[0], displayCoord[1]);
+        }
+        this.ctx.stroke();
+    }
     coordToIndex(coord) {
         const [x, y] = coord;
         return x * 4 + y * this.width * 4;
     }
     toDisplayCoords(x, y) {
-        const newX = Math.floor((x - this.bottomLeft[0]) / this.getXUnitsPerPixel());
+        const newX = this.round((x - this.bottomLeft[0]) / this.getXUnitsPerPixel());
         const inverseY = (y - this.bottomLeft[1]) / this.getYUnitsPerPixel();
-        const newY = Math.floor(this.height - inverseY);
+        const newY = this.round(this.height - inverseY);
         return [newX, newY];
     }
     getXUnitsPerPixel() {
@@ -38,5 +52,13 @@ class Display {
     getYUnitsPerPixel() {
         const span = this.topRight[1] - this.bottomLeft[1];
         return span / this.height;
+    }
+    round(n) {
+        if (n % 1 < 0.5) {
+            return Math.floor(n);
+        }
+        else {
+            return Math.ceil(n);
+        }
     }
 }

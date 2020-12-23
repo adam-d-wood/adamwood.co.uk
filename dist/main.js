@@ -14,8 +14,9 @@ function main() {
     //     ctx.fillRect(i*(200/n), 0, 2, 200);
     //     color = Colour.getRandomColour();
     // }
-    let y = x => x ** 2;
+    let y = x => Math.sin(x);
     const curve = new ExplicitCurve(y);
-    curve.plot(display, -4, 4);
+    // curve.plot(display, -4, 4);
+    curve.lineJoinedPlot(display, -4, 4);
 }
 // ctx.fillRect(10, 10, 150, 100);
