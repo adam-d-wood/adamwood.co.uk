@@ -4,21 +4,15 @@ $(function() {
 
 function main() {
     var canvas = document.getElementById("display");
-    // var ctx = canvas.getContext("2d");
-    let display = new Display(canvas);
-    // ctx.fillStyle = "green";
-    var color = new Colour(0, 0, 0);
-    // var n = 40;
-    // for (var i =0; i<n; i++) {
-    //     ctx.fillStyle = color.toHexString();
-    //     console.log(ctx.fillStyle)
-    //     ctx.fillRect(i*(200/n), 0, 2, 200);
-    //     color = Colour.getRandomColour();
-    // }
+    const grey: Colour = new Colour(10, 10, 10);
+    let display = new Display(canvas, grey);
     let y = x => Math.sin(x);
     const curve = new ExplicitCurve(y);
-    // curve.plot(display, -4, 4);
-    curve.lineJoinedPlot(display, -4, 4);
+    const red: Colour = new Colour(255, 0, 0);
+    const blue: Colour = new Colour(0, 0, 255);
+    curve.lineJoinedPlot(display, -4, 4, red);
+    let g = x => Math.sin(x+Math.PI/2);
+    const curve2 = new ExplicitCurve(g);
+    curve2.lineJoinedPlot(display, -4, 4, blue);
 }
-// ctx.fillRect(10, 10, 150, 100);
 

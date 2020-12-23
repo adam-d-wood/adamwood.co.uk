@@ -1,6 +1,8 @@
 class Display {
-    constructor(canvas) {
+    constructor(canvas, backgroundColour) {
         this.canvas = canvas;
+        this.backgroundColour = backgroundColour;
+        this.canvas.style.backgroundColor = this.backgroundColour.toHexString();
         this.width = this.canvas.width;
         this.height = this.canvas.height;
         this.ctx = canvas.getContext("2d");
@@ -21,8 +23,7 @@ class Display {
         }
         this.ctx.putImageData(imageData, 0, 0);
     }
-    lineJoinedPlot(table) {
-        const curveColour = new Colour(255, 0, 0);
+    lineJoinedPlot(table, curveColour) {
         this.ctx.strokeStyle = curveColour.toHexString();
         ;
         this.ctx.lineWidth = 10;

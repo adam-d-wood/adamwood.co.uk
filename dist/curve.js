@@ -16,8 +16,8 @@ class ExplicitCurve {
         const table = this.getTable(display, start, end);
         display.pixelPlot(table);
     }
-    lineJoinedPlot(display, start, end) {
+    lineJoinedPlot(display, start, end, colour) {
         const table = this.getTable(display, start, end);
-        display.lineJoinedPlot(table);
+        display.lineJoinedPlot(table, colour);
     }
 }

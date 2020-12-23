@@ -6,9 +6,12 @@ class Display {
     public height: number;
     public bottomLeft: number[];
     public topRight: number[];
+    public backgroundColour: Colour;
 
-    constructor(canvas: any) {
+    constructor(canvas: any, backgroundColour: Colour) {
         this.canvas = canvas;
+        this.backgroundColour = backgroundColour
+        this.canvas.style.backgroundColor = this.backgroundColour.toHexString();
         this.width = this.canvas.width;
         this.height = this.canvas.height;
         this.ctx = canvas.getContext("2d");
@@ -32,8 +35,7 @@ class Display {
 
     }
 
-    public lineJoinedPlot(table: number[][]): void {
-        const curveColour: Colour = new Colour(255, 0, 0);
+    public lineJoinedPlot(table: number[][], curveColour: Colour): void {
         this.ctx.strokeStyle = curveColour.toHexString();;
         this.ctx.lineWidth = 10;
         console.log("strokestyle", this.ctx.strokeStyle);
