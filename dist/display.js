@@ -9,6 +9,9 @@ class Display {
         this.bottomLeft = [-5, -5];
         this.topRight = [5, 5];
     }
+    clear() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
     pixelPlot(table) {
         let imageData = this.ctx.getImageData(0, 0, this.width, this.height);
         let imageArray = imageData.data;
@@ -23,11 +26,30 @@ class Display {
         }
         this.ctx.putImageData(imageData, 0, 0);
     }
+    drawGrid() {
+        this.ctx.strokeStyle = "#aaaaaa";
+        this.ctx.lineWidth = 4;
+        for (let i = this.bottomLeft[0]; i < this.topRight[0]; i++) {
+            this.ctx.beginPath();
+            let top = this.toDisplayCoords(i, this.topRight[1]);
+            this.ctx.moveTo(top[0], top[1]);
+            let bottom = this.toDisplayCoords(i, this.bottomLeft[1]);
+            this.ctx.lineTo(bottom[0], bottom[1]);
+            this.ctx.stroke();
+        }
+        for (let i = this.bottomLeft[1]; i < this.topRight[1]; i++) {
+            this.ctx.beginPath();
+            let left = this.toDisplayCoords(this.bottomLeft[0], i);
+            this.ctx.moveTo(left[0], left[1]);
+            let right = this.toDisplayCoords(this.topRight[0], i);
+            this.ctx.lineTo(right[0], right[1]);
+            this.ctx.stroke();
+        }
+    }
     lineJoinedPlot(table, curveColour) {
         this.ctx.strokeStyle = curveColour.toHexString();
         ;
         this.ctx.lineWidth = 10;
-        console.log("strokestyle", this.ctx.strokeStyle);
         this.ctx.beginPath();
         // this.ctx.moveTo(0, 0);
         for (let coord of table) {

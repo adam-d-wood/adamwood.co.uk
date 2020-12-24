@@ -23,4 +23,20 @@ class Animator {
             curve.lineJoinedPlot(this.display);
         }
     }
+
+    animate(): void {
+        let t: number = 0;
+        let anim = setInterval(frame, 20);
+        const self: Animator = this;
+        function frame(): void {
+            if (t > 1000) {
+                clearInterval(anim);
+            } else {
+                self.display.clear();
+                self.display.drawGrid();
+                self.drawCurvesAt(t);
+                t += 0.02;
+            }
+        }
+    }
 }

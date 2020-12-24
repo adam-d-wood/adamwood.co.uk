@@ -36,4 +36,5 @@ class ExplicitCurve {
         const table = this.getTable(display, this.start, this.end);
         display.lineJoinedPlot(table, this.colour);
     }
+
 }
