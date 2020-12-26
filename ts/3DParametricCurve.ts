@@ -19,4 +19,10 @@ class ParametricCurve3D {
         this.tStart = tStart;
         this.tEnd = tEnd;
     }
+
+    getTable(display: Display, density: number): number[][] {
+        const span: number = this.tEnd - this.tStart;
+        const increment: number = span / density;
+        return [[]];
+    }
 }
