@@ -20,9 +20,19 @@ class ParametricCurve3D {
         this.tEnd = tEnd;
     }
 
+    evaluate(t: number): number[] {
+        const [x, y, z]: number[] = [this.x, this.y, this.z].map(
+            e => e(t)
+        );
+        return [x, y, z];
+    }
+
     getTable(display: Display, density: number): number[][] {
         const span: number = this.tEnd - this.tStart;
         const increment: number = span / density;
+        for (let t = this.tStart; t < this.tEnd; t += increment) {
+
+        }
         return [[]];
     }
 }
