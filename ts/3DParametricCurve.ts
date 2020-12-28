@@ -31,7 +31,7 @@ class ParametricCurve3D {
         const span: number = this.tEnd - this.tStart;
         const increment: number = span / density;
         for (let t = this.tStart; t < this.tEnd; t += increment) {
-
+            
         }
         return [[]];
     }
