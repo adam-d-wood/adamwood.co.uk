@@ -20,19 +20,23 @@ class ParametricCurve3D {
         this.tEnd = tEnd;
     }
 
-    evaluate(t: number): number[] {
+    evaluateAt(t: number): Vector {
+
+        //get xyz coords for some value of the parameter t
         const [x, y, z]: number[] = [this.x, this.y, this.z].map(
             e => e(t)
         );
-        return [x, y, z];
+        return new Vector([x, y, z]);
     }
 
-    getTable(display: Display, density: number): number[][] {
+    getSpaceCoords(display: Display, density: number): Vector[] {
         const span: number = this.tEnd - this.tStart;
         const increment: number = span / density;
+        let coords: Vector[] = [];
         for (let t = this.tStart; t < this.tEnd; t += increment) {
-            
+            let coord: Vector = this.evaluateAt(t);
+            coords.push(coord);
         }
-        return [[]];
+        return coords;
     }
 }
