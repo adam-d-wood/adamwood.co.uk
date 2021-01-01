@@ -6,15 +6,19 @@ class ParametricCurve3D {
         this.tStart = tStart;
         this.tEnd = tEnd;
     }
-    evaluate(t) {
+    evaluateAt(t) {
+        //get xyz coords for some value of the parameter t
         const [x, y, z] = [this.x, this.y, this.z].map(e => e(t));
-        return [x, y, z];
+        return new Vector([x, y, z]);
     }
-    getTable(display, density) {
+    getSpaceCoords(display, density) {
         const span = this.tEnd - this.tStart;
         const increment = span / density;
+        let coords = [];
         for (let t = this.tStart; t < this.tEnd; t += increment) {
+            let coord = this.evaluateAt(t);
+            coords.push(coord);
         }
-        return [[]];
+        return coords;
     }
 }
