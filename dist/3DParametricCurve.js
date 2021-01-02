@@ -11,7 +11,7 @@ class ParametricCurve3D {
         const [x, y, z] = [this.x, this.y, this.z].map(e => e(t));
         return new Vector([x, y, z]);
     }
-    getSpaceCoords(display, density) {
+    getSpaceCoords(density) {
         const span = this.tEnd - this.tStart;
         const increment = span / density;
         let coords = [];
@@ -20,5 +20,19 @@ class ParametricCurve3D {
             coords.push(coord);
         }
         return coords;
+    }
+    toScreenCoords(spaceCoord) {
+        const x = spaceCoord.getEntry(0);
+        const y = spaceCoord.getEntry(1);
+        return [x, y];
+    }
+    getTable() {
+        const spaceCoords = this.getSpaceCoords(1);
+        let table = [];
+        for (let spaceCoord of spaceCoords) {
+            const [x, y] = this.toScreenCoords(spaceCoord);
+            table.push([x, y]);
+        }
+        return table;
     }
 }
