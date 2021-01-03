@@ -27,12 +27,17 @@ class ParametricCurve3D {
         return [x, y];
     }
     getTable() {
-        const spaceCoords = this.getSpaceCoords(1);
+        const spaceCoords = this.getSpaceCoords(100);
         let table = [];
         for (let spaceCoord of spaceCoords) {
             const [x, y] = this.toScreenCoords(spaceCoord);
             table.push([x, y]);
         }
         return table;
+    }
+    pixelPlot(display) {
+        const table = this.getTable();
+        console.log("table", table);
+        display.pixelPlot(table);
     }
 }

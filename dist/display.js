@@ -17,6 +17,7 @@ class Display {
         let imageArray = imageData.data;
         for (let coord of table) {
             let displayCoord = this.toDisplayCoords(coord[0], coord[1]);
+            console.log("plotting", displayCoord);
             let index = this.coordToIndex(displayCoord);
             const colour = new Colour(255, 0, 0);
             imageArray[index] = colour.r;

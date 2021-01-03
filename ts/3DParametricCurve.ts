@@ -47,12 +47,18 @@ class ParametricCurve3D {
     }
 
     getTable(): number[][] {
-        const spaceCoords: Vector[] = this.getSpaceCoords(1);
+        const spaceCoords: Vector[] = this.getSpaceCoords(100);
         let table: number[][] = [];
         for (let spaceCoord of spaceCoords) {
             const [x, y]: number[] = this.toScreenCoords(spaceCoord);
             table.push([x, y])
         }
         return table;
+    }
+
+    pixelPlot(display: Display): void {
+        const table = this.getTable();
+        console.log("table", table);
+        display.pixelPlot(table);
     }
 }
