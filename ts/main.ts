@@ -23,13 +23,13 @@ function main() {
     // const scaledSum = (x, t) => 0.01 * sum.y(x, t);
     // sum.y = scaledSum;
     // curves.push(sum);
-    // const animator = new Animator(display, [curve, curve2, curve3]);
-    // animator.animate();
-    const x = t => Math.sin(t);
-    const y = t => Math.sin(t);
-    const z = t => Math.sin(t);
-    const curve3d = new ParametricCurve3D(x, y, z, 0, 2);
-    curve3d.pixelPlot(display);
+    const animator = new Animator(display, [curve, curve2, curve3]);
+    animator.animate();
+    // const x = t => Math.sin(t);
+    // const y = t => Math.sin(t);
+    // const z = t => Math.sin(t);
+    // const curve3d = new ParametricCurve3D(x, y, z, 0, 2);
+    // curve3d.pixelPlot(display);
 }
 
 function getPhaseShiftedWaves(n: number): ParameterisedExplicitCurve[] {
