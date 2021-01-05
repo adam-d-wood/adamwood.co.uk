@@ -33,6 +33,13 @@ class Colour {
     return this.add(c.scale(-1));
   }
 
+  multiply(c: Colour): Colour {
+    const newRed = this.r/255 * c.r;
+    const newGreen = this.g/255 * c.g;
+    const newBlue = this.b/255 * c.b;
+    return new Colour(newRed, newGreen, newBlue);
+  }
+
   scale(s: number): Colour {
       var newRed = this.r * s;
       var newGreen = this.g * s;

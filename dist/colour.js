@@ -24,6 +24,12 @@ class Colour {
     sub(c) {
         return this.add(c.scale(-1));
     }
+    multiply(c) {
+        const newRed = this.r / 255 * c.r;
+        const newGreen = this.g / 255 * c.g;
+        const newBlue = this.b / 255 * c.b;
+        return new Colour(newRed, newGreen, newBlue);
+    }
     scale(s) {
         var newRed = this.r * s;
         var newGreen = this.g * s;
