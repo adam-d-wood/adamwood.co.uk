@@ -15,6 +15,10 @@ class Colour {
         result += this.b.toString(16).padStart(2, "0");
         return result;
     }
+    get_inverse() {
+        const [r1, g1, b1] = [this.r, this.g, this.b].map(x => 255 - x);
+        return new Colour(r1, g1, b1);
+    }
     add(c) {
         var newRed = this.r + c.r;
         var newGreen = this.g + c.g;

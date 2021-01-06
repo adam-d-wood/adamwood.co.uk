@@ -22,6 +22,11 @@ class Colour {
     return result;
   }
 
+  get_inverse(): Colour {
+    const [r1, g1, b1]: number[] = [this.r, this.g, this.b].map(x => 255 - x);
+    return new Colour(r1, g1, b1);
+  }
+
   add(c: Colour): Colour {
     var newRed = this.r + c.r;
     var newGreen = this.g + c.g;
