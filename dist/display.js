@@ -28,8 +28,12 @@ class Display {
         this.ctx.putImageData(imageData, 0, 0);
     }
     drawGrid() {
-        this.ctx.strokeStyle = "#aaaaaa";
-        this.ctx.lineWidth = 4;
+        const gradient = this.ctx.createLinearGradient(0, 0, 0, this.height);
+        gradient.addColorStop(0, "#aaaaaa01");
+        gradient.addColorStop(0.5, "#fd11f4ff");
+        gradient.addColorStop(1, "#aaaaaa01");
+        this.ctx.strokeStyle = gradient;
+        this.ctx.lineWidth = 2;
         for (let i = this.bottomLeft[0]; i < this.topRight[0]; i++) {
             this.ctx.beginPath();
             let top = this.toDisplayCoords(i, this.topRight[1]);
@@ -48,8 +52,7 @@ class Display {
         }
     }
     lineJoinedPlot(table, curveColour) {
-        this.ctx.strokeStyle = curveColour.toHexString();
-        ;
+        this.ctx.strokeStyle = curveColour.toHexString() + "c0";
         this.ctx.lineWidth = 10;
         this.ctx.beginPath();
         // this.ctx.moveTo(0, 0);
