@@ -3,6 +3,19 @@ body {
     color: white;
 }
 
+#header {
+    display: flex;
+    justify-content: space-around;
+}
+
+#links a{
+    text-decoration: none;
+}
+
+#links {
+    margin: auto 0;
+}
+
 h1, h2 {
     text-align: center;
     font-size: 2rem;
