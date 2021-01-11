@@ -4,16 +4,16 @@ body {
 }
 
 #header {
-    display: flex;
+    display: flex !important;
     justify-content: space-around;
 }
 
-#links a{
+#links a {
     text-decoration: none;
 }
 
 #links {
-    margin: auto 0;
+    margin: auto 25px;
 }
 
 h1, h2 {
