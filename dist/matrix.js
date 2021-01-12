@@ -56,4 +56,21 @@ class Matrix {
             throw "addition is not defined for matrices of unequal shapes";
         }
     }
+    matMul(m) {
+        if (this.cols == m.rows) {
+            let entries = [];
+            for (let i = 0; i < this.rows; i++) {
+                let row = [];
+                for (let j = 0; j < m.cols; j++) {
+                    let entry = this.getRow(i).dot(m.getCol(j));
+                    row.push(entry);
+                }
+                entries.push(row);
+            }
+            return Matrix.fromEntries(entries);
+        }
+        else {
+            throw "invalid matrix shapes";
+        }
+    }
 }

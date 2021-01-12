@@ -6,13 +6,13 @@ class Vector {
     getEntry(i) {
         return this.entries[i];
     }
-    static dot(a, b) {
-        if (a.size != b.size) {
+    dot(a) {
+        if (a.size != this.size) {
             throw new Error("dot product not defined for different sized vectors");
         }
         let result = 0;
         for (let i = 0; i < a.size; i++) {
-            result += a.getEntry(i) * b.getEntry(i);
+            result += a.getEntry(i) * this.getEntry(i);
         }
         return result;
     }
