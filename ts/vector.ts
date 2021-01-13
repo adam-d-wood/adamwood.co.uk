@@ -21,4 +21,25 @@ class Vector {
         }
         return result;
     }
+
+    scale(s: number): Vector {
+        const newEntries = this.entries.map(x => s*x);
+        return new Vector(newEntries);
+    }
+
+    add(v: Vector): Vector {
+        if (this.size == v.size) {
+            let newEntries: number[] = [];
+            for (let i=0; i<this.size; i++) {
+                newEntries.push(this.getEntry(i) + v.getEntry(i));
+            }
+            return new Vector(newEntries);
+        } else {
+            throw "cannot add different sized vectors"
+        }
+    }
+
+    sub(v: Vector): Vector {
+        return this.add(v.scale(-1));
+    }
 }

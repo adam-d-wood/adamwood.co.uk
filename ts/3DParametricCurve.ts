@@ -41,13 +41,21 @@ class ParametricCurve3D {
     }
 
     toScreenCoords(spaceCoord: Vector): number[] {
-        const x = spaceCoord.getEntry(0);
-        const y = spaceCoord.getEntry(1);
+        console.log("spacecoord", spaceCoord.entries)
+        const Q: Vector = new Vector([0, 0, 5]);
+        const N: Vector = new Vector([0, 0, -1]);
+        const O: Vector = new Vector([0, 0, 0]);
+        const D: Vector = spaceCoord.sub(O);
+        const s: number = (Q.sub(O).dot(N)) / D.dot(N);
+        console.log("s", s)
+        const screenIntersect: Vector = O.add(D.scale(s));
+        const x = screenIntersect.getEntry(0);
+        const y = screenIntersect.getEntry(1);
         return [x, y];
     }
 
     getTable(): number[][] {
-        const spaceCoords: Vector[] = this.getSpaceCoords(100);
+        const spaceCoords: Vector[] = this.getSpaceCoords(1000);
         let table: number[][] = [];
         for (let spaceCoord of spaceCoords) {
             const [x, y]: number[] = this.toScreenCoords(spaceCoord);

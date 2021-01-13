@@ -16,4 +16,23 @@ class Vector {
         }
         return result;
     }
+    scale(s) {
+        const newEntries = this.entries.map(x => s * x);
+        return new Vector(newEntries);
+    }
+    add(v) {
+        if (this.size == v.size) {
+            let newEntries = [];
+            for (let i = 0; i < this.size; i++) {
+                newEntries.push(this.getEntry(i) + v.getEntry(i));
+            }
+            return new Vector(newEntries);
+        }
+        else {
+            throw "cannot add different sized vectors";
+        }
+    }
+    sub(v) {
+        return this.add(v.scale(-1));
+    }
 }

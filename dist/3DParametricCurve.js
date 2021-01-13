@@ -22,12 +22,20 @@ class ParametricCurve3D {
         return coords;
     }
     toScreenCoords(spaceCoord) {
-        const x = spaceCoord.getEntry(0);
-        const y = spaceCoord.getEntry(1);
+        console.log("spacecoord", spaceCoord.entries);
+        const Q = new Vector([0, 0, 5]);
+        const N = new Vector([0, 0, -1]);
+        const O = new Vector([0, 0, 0]);
+        const D = spaceCoord.sub(O);
+        const s = (Q.sub(O).dot(N)) / D.dot(N);
+        console.log("s", s);
+        const screenIntersect = O.add(D.scale(s));
+        const x = screenIntersect.getEntry(0);
+        const y = screenIntersect.getEntry(1);
         return [x, y];
     }
     getTable() {
-        const spaceCoords = this.getSpaceCoords(100);
+        const spaceCoords = this.getSpaceCoords(1000);
         let table = [];
         for (let spaceCoord of spaceCoords) {
             const [x, y] = this.toScreenCoords(spaceCoord);
