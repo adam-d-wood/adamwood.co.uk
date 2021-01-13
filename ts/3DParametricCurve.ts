@@ -41,13 +41,11 @@ class ParametricCurve3D {
     }
 
     toScreenCoords(spaceCoord: Vector): number[] {
-        console.log("spacecoord", spaceCoord.entries)
         const Q: Vector = new Vector([0, 0, 5]);
         const N: Vector = new Vector([0, 0, -1]);
         const O: Vector = new Vector([0, 0, 0]);
         const D: Vector = spaceCoord.sub(O);
         const s: number = (Q.sub(O).dot(N)) / D.dot(N);
-        console.log("s", s)
         const screenIntersect: Vector = O.add(D.scale(s));
         const x = screenIntersect.getEntry(0);
         const y = screenIntersect.getEntry(1);
@@ -55,7 +53,7 @@ class ParametricCurve3D {
     }
 
     getTable(): number[][] {
-        const spaceCoords: Vector[] = this.getSpaceCoords(1000);
+        const spaceCoords: Vector[] = this.getSpaceCoords(100);
         let table: number[][] = [];
         for (let spaceCoord of spaceCoords) {
             const [x, y]: number[] = this.toScreenCoords(spaceCoord);
@@ -66,7 +64,12 @@ class ParametricCurve3D {
 
     pixelPlot(display: Display): void {
         const table = this.getTable();
-        console.log("table", table);
+        // console.log("table", table);
         display.pixelPlot(table);
+    }
+
+    lineJoinedPlot(display: Display, colour: Colour): void {
+        const table = this.getTable();
+        display.lineJoinedPlot(table, colour);
     }
 }

@@ -24,11 +24,27 @@ function main() {
     // curves.push(sum);
     // const animator = new Animator(display, [curve, curve2, curve3]);
     // animator.animate();
-    const x = t => 5 * Math.sin(t / 5);
-    const y = t => -10;
-    const z = t => 5 + t;
-    const curve3d = new ParametricCurve3D(x, y, z, 0, 500);
-    curve3d.pixelPlot(display);
+    let lines = [];
+    const p_colour = Colour.getRandomColour();
+    const c_colour = p_colour.get_inverse();
+    const n = 80;
+    const i_colour = (c_colour.sub(p_colour)).scale(1 / n);
+    console.log(i_colour);
+    let colour = p_colour;
+    for (let i = 0; i < n; i++) {
+        console.log(colour);
+        let x = t => -40 + 80 / n * (i + 1);
+        let y = t => -10 + Math.sin(t / 10) + Math.pow(x(t) / 5, 2) - Math.pow(Math.E, t / 50);
+        let z = t => t;
+        let line = new ParametricCurve3D(x, y, z, 0, 300);
+        line.lineJoinedPlot(display, colour);
+        colour = (colour.add(i_colour)).round();
+    }
+    // const x = t => t * Math.sin(t) + t/10;  
+    // const y = t => -9 + t * Math.cos(t);
+    // const z = t => 10 + t;
+    // const curve3d = new ParametricCurve3D(x, y, z, 0, 100);
+    // curve3d.lineJoinedPlot(display);
 }
 function getPhaseShiftedWaves(n) {
     const step = Math.PI / (n);

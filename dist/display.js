@@ -53,7 +53,7 @@ class Display {
     }
     lineJoinedPlot(table, curveColour) {
         this.ctx.strokeStyle = curveColour.toHexString() + "c0";
-        this.ctx.lineWidth = 10;
+        this.ctx.lineWidth = 2;
         this.ctx.beginPath();
         // this.ctx.moveTo(0, 0);
         for (let coord of table) {
