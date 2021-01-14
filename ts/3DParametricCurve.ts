@@ -53,7 +53,7 @@ class ParametricCurve3D {
     }
 
     getTable(): number[][] {
-        const spaceCoords: Vector[] = this.getSpaceCoords(100);
+        const spaceCoords: Vector[] = this.getSpaceCoords(1000);
         let table: number[][] = [];
         for (let spaceCoord of spaceCoords) {
             const [x, y]: number[] = this.toScreenCoords(spaceCoord);

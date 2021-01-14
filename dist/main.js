@@ -27,16 +27,16 @@ function main() {
     let lines = [];
     const p_colour = Colour.getRandomColour();
     const c_colour = p_colour.get_inverse();
-    const n = 80;
+    const n = 30;
     const i_colour = (c_colour.sub(p_colour)).scale(1 / n);
-    console.log(i_colour);
     let colour = p_colour;
     for (let i = 0; i < n; i++) {
-        console.log(colour);
-        let x = t => -40 + 80 / n * (i + 1);
-        let y = t => -10 + Math.sin(t / 10) + Math.pow(x(t) / 5, 2) - Math.pow(Math.E, t / 50);
-        let z = t => t;
-        let line = new ParametricCurve3D(x, y, z, 0, 300);
+        const x1 = -40 + 80 / n * (i + 1);
+        let x = t => x1 + x1 * 1 * Math.pow(10, -14) * (Math.pow(t, 5) - 10000 * Math.pow(t, 3));
+        // let y = t => -10 + Math.sin(t/10) + Math.pow(x(t)/5, 2) - Math.pow(Math.E, t/50);
+        let y = t => -10 + Math.pow(x1 / 5, 2) + 1 / 100000 * (Math.pow(t, 3) / 3 - 200 * Math.pow(t, 2));
+        let z = t => 3 + t;
+        let line = new ParametricCurve3D(x, y, z, 0, 1000);
         line.lineJoinedPlot(display, colour);
         colour = (colour.add(i_colour)).round();
     }

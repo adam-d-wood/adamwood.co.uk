@@ -42,4 +42,16 @@ class Vector {
     sub(v: Vector): Vector {
         return this.add(v.scale(-1));
     }
+
+    transform(m: Matrix): Vector {
+        if (m.cols == this.size) {
+            let newEntries: number[] = [];
+            for (let i=0; i<this.size; i++) {
+                newEntries.push(m.getRow(i).dot(this));
+            }
+            return new Vector(newEntries);
+        } else {
+            throw "invalid shapes";
+        }
+    }
 }

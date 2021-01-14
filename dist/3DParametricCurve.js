@@ -33,7 +33,7 @@ class ParametricCurve3D {
         return [x, y];
     }
     getTable() {
-        const spaceCoords = this.getSpaceCoords(100);
+        const spaceCoords = this.getSpaceCoords(1000);
         let table = [];
         for (let spaceCoord of spaceCoords) {
             const [x, y] = this.toScreenCoords(spaceCoord);

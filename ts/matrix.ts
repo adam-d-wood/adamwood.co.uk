@@ -1,8 +1,8 @@
 class Matrix {
 
     private entries: number[][];
-    private cols: number;
-    private rows: number;
+    public cols: number;
+    public rows: number;
 
     constructor(m: number=2, n:number=2) {
         this.rows = m;
