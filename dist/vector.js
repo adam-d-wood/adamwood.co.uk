@@ -35,4 +35,16 @@ class Vector {
     sub(v) {
         return this.add(v.scale(-1));
     }
+    transform(m) {
+        if (m.cols == this.size) {
+            let newEntries = [];
+            for (let i = 0; i < this.size; i++) {
+                newEntries.push(m.getRow(i).dot(this));
+            }
+            return new Vector(newEntries);
+        }
+        else {
+            throw "invalid shapes";
+        }
+    }
 }
