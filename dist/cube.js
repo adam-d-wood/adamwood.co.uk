@@ -17,4 +17,7 @@ class Cube {
         }
         return vertices;
     }
+    translate(v) {
+        return new Cube(this.length, this.centre.add(v));
+    }
 }

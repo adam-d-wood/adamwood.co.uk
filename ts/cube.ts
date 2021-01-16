@@ -23,4 +23,8 @@ class Cube {
         return vertices;
     }
 
+    translate(v: Vector): Cube {
+        return new Cube(this.length, this.centre.add(v));
+    }
+
 }
