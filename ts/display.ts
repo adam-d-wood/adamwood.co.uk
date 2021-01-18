@@ -23,6 +23,36 @@ class Display {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
+    toScreenCoords(spaceCoord: Vector): Vector {
+        const Q: Vector = new Vector([0, 0, 5]);
+        const N: Vector = new Vector([0, 0, -1]);
+        const O: Vector = new Vector([0, 0, 0]);
+        const D: Vector = spaceCoord.sub(O);
+        const s: number = (Q.sub(O).dot(N)) / D.dot(N);
+        const screenIntersect: Vector = O.add(D.scale(s));
+        const x = screenIntersect.getEntry(0);
+        const y = screenIntersect.getEntry(1);
+        return new Vector([x, y]);
+    }
+
+    public drawLine2D(start: Vector, end: Vector, colour: Colour, width: number): void {
+        this.ctx.strokeStyle = colour.toHexString();
+        this.ctx.lineWidth = width;
+        this.ctx.beginPath();
+        this.ctx.moveTo(...start.entries);
+        this.ctx.lineTo(...end.entries);
+        this.ctx.stroke();
+    }
+
+    public drawLine(start: Vector, end: Vector, colour: Colour, width: number): void {
+        if (start.size == 2 && end.size == 2) {
+            this.drawLine2D(start, end, colour, width);
+        } else if (start.size == 3 && end.size == 3) {
+            const [start2D, end2D]: Vector[] = [start, end].map(this.toScreenCoords)
+            this.drawLine2D(start2D, end2D, colour, width);
+        }
+    }
+
     public pixelPlot(table: number[][]): void {
         let imageData: ImageData = this.ctx.getImageData(0, 0, this.width, this.height);
         let imageArray: Uint8ClampedArray = imageData.data;

@@ -12,6 +12,34 @@ class Display {
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
+    toScreenCoords(spaceCoord) {
+        const Q = new Vector([0, 0, 5]);
+        const N = new Vector([0, 0, -1]);
+        const O = new Vector([0, 0, 0]);
+        const D = spaceCoord.sub(O);
+        const s = (Q.sub(O).dot(N)) / D.dot(N);
+        const screenIntersect = O.add(D.scale(s));
+        const x = screenIntersect.getEntry(0);
+        const y = screenIntersect.getEntry(1);
+        return new Vector([x, y]);
+    }
+    drawLine2D(start, end, colour, width) {
+        this.ctx.strokeStyle = colour.toHexString();
+        this.ctx.lineWidth = width;
+        this.ctx.beginPath();
+        this.ctx.moveTo(...start.entries);
+        this.ctx.lineTo(...end.entries);
+        this.ctx.stroke();
+    }
+    drawLine(start, end, colour, width) {
+        if (start.size == 2 && end.size == 2) {
+            this.drawLine2D(start, end, colour, width);
+        }
+        else if (start.size == 3 && end.size == 3) {
+            const [start2D, end2D] = [start, end].map(this.toScreenCoords);
+            this.drawLine2D(start2D, end2D, colour, width);
+        }
+    }
     pixelPlot(table) {
         let imageData = this.ctx.getImageData(0, 0, this.width, this.height);
         let imageArray = imageData.data;
