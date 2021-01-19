@@ -1,11 +1,13 @@
-class Cube {
+class Cube extends Wireframe{
 
     private length: number;
     private centre: Vector;
 
     constructor(length: number, centre: Vector) {
+        super();
         this.length = length;
         this.centre = centre;
+        this.vertices = this.getVertices();
     }
 
     getVertices(): Vector[] {

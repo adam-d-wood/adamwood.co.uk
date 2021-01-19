@@ -1,7 +1,9 @@
-class Cube {
+class Cube extends Wireframe {
     constructor(length, centre) {
+        super();
         this.length = length;
         this.centre = centre;
+        this.vertices = this.getVertices();
     }
     getVertices() {
         let vertices = [];

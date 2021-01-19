@@ -1,6 +1,6 @@
 class Wireframe {
 
-    private vertices: Vector[];
+    public vertices: Vector[];
     private edges: number[][];
 
     getVertex(i: number): Vector {
