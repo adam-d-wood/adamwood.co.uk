@@ -7,10 +7,10 @@ class Cube extends Wireframe{
         super();
         this.length = length;
         this.centre = centre;
-        this.vertices = this.getVertices();
+        this.vertices = this.initVertices();
     }
 
-    getVertices(): Vector[] {
+    private initVertices(): Vector[] {
         let vertices: Vector[] = [];
         for (let i=0; i < 2; i++) {
             for (let j=0; j < 2; j++) {
@@ -24,6 +24,8 @@ class Cube extends Wireframe{
         }
         return vertices;
     }
+
+
 
     translate(v: Vector): Cube {
         return new Cube(this.length, this.centre.add(v));

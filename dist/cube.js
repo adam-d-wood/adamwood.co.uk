@@ -3,9 +3,9 @@ class Cube extends Wireframe {
         super();
         this.length = length;
         this.centre = centre;
-        this.vertices = this.getVertices();
+        this.vertices = this.initVertices();
     }
-    getVertices() {
+    initVertices() {
         let vertices = [];
         for (let i = 0; i < 2; i++) {
             for (let j = 0; j < 2; j++) {
