@@ -19,6 +19,19 @@ class Cube extends Wireframe {
         }
         return vertices;
     }
+    initEdges() {
+        let edges = [];
+        for (let i = 0; i < this.vertices.length; i++) {
+            for (let j = i; j < this.vertices.length; j++) {
+                let vertex1 = this.vertices[i];
+                let vertex2 = this.vertices[j];
+                if (vertex1.sub(vertex2).magnitude() == 1) {
+                    edges.push([i, j]);
+                }
+            }
+        }
+        return edges;
+    }
     translate(v) {
         return new Cube(this.length, this.centre.add(v));
     }

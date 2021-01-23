@@ -25,6 +25,21 @@ class Cube extends Wireframe{
         return vertices;
     }
 
+    private initEdges(): number[][] {
+        let edges: number[][] = []
+        for (let i=0; i<this.vertices.length; i++) {
+            for (let j=i; j<this.vertices.length; j++) {
+                let vertex1: Vector = this.vertices[i];
+                let vertex2: Vector = this.vertices[j];
+                if (vertex1.sub(vertex2).magnitude() == 1) {
+                    edges.push([i, j])
+                }
+            }
+        }
+        return edges;
+    }
+
+
 
 
     translate(v: Vector): Cube {

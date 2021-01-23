@@ -47,4 +47,7 @@ class Vector {
             throw "invalid shapes";
         }
     }
+    magnitude() {
+        return Math.sqrt(this.entries.map(x => x * x).reduce((a, b) => a + b));
+    }
 }
