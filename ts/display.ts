@@ -38,9 +38,11 @@ class Display {
     public drawLine2D(start: Vector, end: Vector, colour: Colour, width: number): void {
         this.ctx.strokeStyle = colour.toHexString();
         this.ctx.lineWidth = width;
+        const displayStart: number[] = this.toDisplayCoords(start.getEntry(0), start.getEntry(1));
+        const displayEnd: number[] = this.toDisplayCoords(end.getEntry(0), end.getEntry(1));
         this.ctx.beginPath();
-        this.ctx.moveTo(...start.entries);
-        this.ctx.lineTo(...end.entries);
+        this.ctx.moveTo(...displayStart);
+        this.ctx.lineTo(...displayEnd);
         this.ctx.stroke();
     }
 

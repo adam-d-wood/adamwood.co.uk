@@ -14,7 +14,9 @@ class Wireframe {
     drawEdge(index: number, display: Display) {
         const vertex_indices: number[] = this.getEdge(index);
         const start: Vector = this.getVertex(vertex_indices[0]);
+        console.log("start", start);
         const end: Vector = this.getVertex(vertex_indices[1]);
+        console.log("end", end);
         display.drawLine(start, end, new Colour(255, 0, 0), 4);
     }
 

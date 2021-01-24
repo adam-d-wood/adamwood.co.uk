@@ -40,8 +40,10 @@ function main() {
     //     line.lineJoinedPlot(display, colour);
     //     colour = (colour.add(i_colour)).round();
     // }
-    let cube = new Cube(100, new Vector([0, -40, 100]));
+    let cube = new Cube(5, new Vector([0, 0, 20]));
     cube.draw(display);
+    display.drawLine(new Vector([-1, 0, 100]), new Vector([1, 0, 100]), new Colour(255, 0, 0), 4);
+    display.drawLine2D(new Vector([-5, 0]), new Vector([5, 0]), new Colour(255, 0, 0), 4);
     // const x = t => t * Math.sin(t) + t/10;  
     // const y = t => -9 + t * Math.cos(t);
     // const z = t => 10 + t;
