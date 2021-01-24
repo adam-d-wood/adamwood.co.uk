@@ -25,22 +25,26 @@ function main() {
     // curves.push(sum);
     // const animator = new Animator(display, [curve, curve2, curve3]);
     // animator.animate();
-    let lines = [];
-    const p_colour = Colour.getRandomColour();
-    const c_colour = p_colour.get_inverse();
-    const n = 30
-    const i_colour = (c_colour.sub(p_colour)).scale(1/n);
-    let colour = p_colour;
-    for (let i=0; i<n; i++) {
-        const x1 = -40 + 80/n * (i+1);
-        let x = t => x1 + x1 * 1 * Math.pow(10, -14) * (Math.pow(t, 5)-10000*Math.pow(t, 3));
-        // let y = t => -10 + Math.sin(t/10) + Math.pow(x(t)/5, 2) - Math.pow(Math.E, t/50);
-        let y = t => -10 + Math.pow(x1/5, 2) + 1/100000 * (Math.pow(t, 3)/3 - 200*Math.pow(t, 2));
-        let z = t => 3 + t;
-        let line = new ParametricCurve3D(x, y, z, 0, 1000);
-        line.lineJoinedPlot(display, colour);
-        colour = (colour.add(i_colour)).round();
-    }
+
+    // let lines = [];
+    // const p_colour = Colour.getRandomColour();
+    // const c_colour = p_colour.get_inverse();
+    // const n = 30
+    // const i_colour = (c_colour.sub(p_colour)).scale(1/n);
+    // let colour = p_colour;
+    // for (let i=0; i<n; i++) {
+    //     const x1 = -40 + 80/n * (i+1);
+    //     let x = t => x1 + x1 * 1 * Math.pow(10, -14) * (Math.pow(t, 5)-10000*Math.pow(t, 3));
+    //     // let y = t => -10 + Math.sin(t/10) + Math.pow(x(t)/5, 2) - Math.pow(Math.E, t/50);
+    //     let y = t => -10 + Math.pow(x1/5, 2) + 1/100000 * (Math.pow(t, 3)/3 - 200*Math.pow(t, 2));
+    //     let z = t => 3 + t;
+    //     let line = new ParametricCurve3D(x, y, z, 0, 1000);
+    //     line.lineJoinedPlot(display, colour);
+    //     colour = (colour.add(i_colour)).round();
+    // }
+
+    let cube = new Cube(100, new Vector([0, -40, 100]))
+    cube.draw(display);
     // const x = t => t * Math.sin(t) + t/10;  
     // const y = t => -9 + t * Math.cos(t);
     // const z = t => 10 + t;

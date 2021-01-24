@@ -1,7 +1,7 @@
 class Wireframe {
 
     public vertices: Vector[];
-    private edges: number[][];
+    public edges: number[][];
 
     getVertex(i: number): Vector {
         return this.vertices[i];
@@ -16,5 +16,14 @@ class Wireframe {
         const start: Vector = this.getVertex(vertex_indices[0]);
         const end: Vector = this.getVertex(vertex_indices[1]);
         display.drawLine(start, end, new Colour(255, 0, 0), 4);
+    }
+
+    draw(display: Display) {
+        console.log("called")
+        console.log(this.edges)
+        for (let i=0; i<this.edges.length; i++) {
+            console.log("drawing")
+            this.drawEdge(i, display);
+        }
     }
 }

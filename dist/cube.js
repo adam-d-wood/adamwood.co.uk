@@ -4,6 +4,7 @@ class Cube extends Wireframe {
         this.length = length;
         this.centre = centre;
         this.vertices = this.initVertices();
+        this.edges = this.initEdges();
     }
     initVertices() {
         let vertices = [];
@@ -20,16 +21,18 @@ class Cube extends Wireframe {
         return vertices;
     }
     initEdges() {
+        console.log("initialising edges");
         let edges = [];
         for (let i = 0; i < this.vertices.length; i++) {
             for (let j = i; j < this.vertices.length; j++) {
                 let vertex1 = this.vertices[i];
                 let vertex2 = this.vertices[j];
-                if (vertex1.sub(vertex2).magnitude() == 1) {
+                if (vertex1.sub(vertex2).magnitude() == this.length) {
                     edges.push([i, j]);
                 }
             }
         }
+        console.log("edges: ");
         return edges;
     }
     translate(v) {
