@@ -43,10 +43,14 @@ function main() {
     //     colour = (colour.add(i_colour)).round();
     // }
 
-    let cube = new Cube(5, new Vector([0, 0, 20]))
-    cube.draw(display);
-    display.drawLine(new Vector([-1, 0, 100]), new Vector([1, 0, 100]), new Colour(255, 0, 0), 4)
-    display.drawLine2D(new Vector([-5, 0]), new Vector([5, 0]), new Colour(255, 0, 0), 4)
+    let cube = new Cube(5, new Vector([-5, -10, 20]))
+    let cube2 = new Cube(5, new Vector([-5, -5, 20]))
+
+    // cube.draw(display);
+    // cube2.draw(display)
+
+    drawBuildingRow(new Vector([20, -10, 40]), new Vector([20, -10, 60]), 200, display);
+    drawBuildingRow(new Vector([-20, -10, 40]), new Vector([-20, -10, 60]), 200, display);
 
     // const x = t => t * Math.sin(t) + t/10;  
     // const y = t => -9 + t * Math.cos(t);
@@ -68,6 +72,24 @@ function getPhaseShiftedWaves(n: number): ParameterisedExplicitCurve[] {
         curves.push(new ParameterisedExplicitCurve(g, -5, 5, silver));
     }
     return curves;
+}
+
+function drawBuilding(pos, width, n, display) {
+    const stride = new Vector([0, width, 0]);
+    for (let i=0; i < n; i++) {
+        let cube = new Cube(width, pos.add(stride.scale(i)));
+        cube.draw(display);
+    }
+}
+
+function drawBuildingRow(start: Vector, end: Vector, n: number, display: Display) {
+    const stride: Vector = end.sub(start);
+    const width: number = stride.magnitude();
+    for (let i=0; i < n; i++) {
+        // let building = new Cube(width, start.add(stride.scale(i)))
+        // building.draw(display);
+        drawBuilding(start.add(stride.scale(i)), width, Math.floor(6*Math.random()), display);
+    }    
 }
 
 
