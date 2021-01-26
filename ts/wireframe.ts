@@ -2,6 +2,7 @@ class Wireframe {
 
     public vertices: Vector[];
     public edges: number[][];
+    public colour: Colour;
 
     getVertex(i: number): Vector {
         return this.vertices[i];
@@ -17,7 +18,7 @@ class Wireframe {
         console.log("start", start);
         const end: Vector = this.getVertex(vertex_indices[1]);
         console.log("end", end);
-        display.drawLine(start, end, new Colour(255, 0, 0), 4);
+        display.drawLine(start, end, this.colour, 4);
     }
 
     draw(display: Display) {

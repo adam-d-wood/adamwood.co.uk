@@ -11,7 +11,7 @@ class Wireframe {
         console.log("start", start);
         const end = this.getVertex(vertex_indices[1]);
         console.log("end", end);
-        display.drawLine(start, end, new Colour(255, 0, 0), 4);
+        display.drawLine(start, end, this.colour, 4);
     }
     draw(display) {
         console.log("called");

@@ -1,10 +1,11 @@
 class Cube extends Wireframe {
-    constructor(length, centre) {
+    constructor(length, centre, colour) {
         super();
         this.length = length;
         this.centre = centre;
         this.vertices = this.initVertices();
         this.edges = this.initEdges();
+        this.colour = colour;
     }
     initVertices() {
         let vertices = [];
@@ -36,6 +37,6 @@ class Cube extends Wireframe {
         return edges;
     }
     translate(v) {
-        return new Cube(this.length, this.centre.add(v));
+        return new Cube(this.length, this.centre.add(v), this.colour);
     }
 }

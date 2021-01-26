@@ -4,7 +4,7 @@ $(function() {
 
 function main() {
     var canvas = document.getElementById("display");
-    const grey: Colour = new Colour(14, 22, 14);
+    const grey: Colour = new Colour(25, 25, 25);
     const cream: Colour = new Colour(242, 247, 242);
     let display = new Display(canvas, grey);
     let f = (x, t) => Math.cos(Math.pow(x/2, 2) + t);
@@ -42,15 +42,22 @@ function main() {
     //     line.lineJoinedPlot(display, colour);
     //     colour = (colour.add(i_colour)).round();
     // }
-
-    let cube = new Cube(5, new Vector([-5, -10, 20]))
-    let cube2 = new Cube(5, new Vector([-5, -5, 20]))
-
     // cube.draw(display);
     // cube2.draw(display)
+    
+    const rows = 8;
+    const span = 400;
+    const step = span / rows;
+    for (let i=0; i<rows; i++) {
+        let x: number = -span/2 + (i+0.5) * step
+        let y: number = -200
+        let start: Vector = new Vector([x, y, 200]);
+        let end: Vector = new Vector([x, y, 210]);
+        drawBuildingRow(start, end, 100, display);
+    }
 
-    drawBuildingRow(new Vector([20, -10, 40]), new Vector([20, -10, 60]), 200, display);
-    drawBuildingRow(new Vector([-20, -10, 40]), new Vector([-20, -10, 60]), 200, display);
+    // drawBuildingRow(new Vector([20, -10, 40]), new Vector([20, -10, 60]), 200, display);
+    // drawBuildingRow(new Vector([-20, -10, 40]), new Vector([-20, -10, 60]), 200, display);
 
     // const x = t => t * Math.sin(t) + t/10;  
     // const y = t => -9 + t * Math.cos(t);
@@ -74,21 +81,27 @@ function getPhaseShiftedWaves(n: number): ParameterisedExplicitCurve[] {
     return curves;
 }
 
-function drawBuilding(pos, width, n, display) {
+function drawBuilding(pos, width, n, colour, display) {
     const stride = new Vector([0, width, 0]);
     for (let i=0; i < n; i++) {
-        let cube = new Cube(width, pos.add(stride.scale(i)));
+        let cube = new Cube(width, pos.add(stride.scale(i)), colour);
         cube.draw(display);
     }
 }
 
 function drawBuildingRow(start: Vector, end: Vector, n: number, display: Display) {
+    let p_colour = Colour.getRandomColour();
+    let c_colour = p_colour.get_inverse();
+    let i_colour = (c_colour.sub(p_colour)).scale(1/n);
+    let colour = p_colour;
     const stride: Vector = end.sub(start);
     const width: number = stride.magnitude();
     for (let i=0; i < n; i++) {
         // let building = new Cube(width, start.add(stride.scale(i)))
         // building.draw(display);
-        drawBuilding(start.add(stride.scale(i)), width, Math.floor(6*Math.random()), display);
+        drawBuilding(start.add(stride.scale(i)), width, Math.floor(30*Math.random()), colour, display);
+        colour = (colour.add(i_colour)).round();
+        console.log(colour)
     }    
 }
 

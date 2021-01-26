@@ -3,12 +3,13 @@ class Cube extends Wireframe{
     private length: number;
     private centre: Vector;
 
-    constructor(length: number, centre: Vector) {
+    constructor(length: number, centre: Vector, colour: Colour) {
         super();
         this.length = length;
         this.centre = centre;
         this.vertices = this.initVertices();
         this.edges = this.initEdges();
+        this.colour = colour;
     }
 
     private initVertices(): Vector[] {
@@ -46,7 +47,7 @@ class Cube extends Wireframe{
 
 
     translate(v: Vector): Cube {
-        return new Cube(this.length, this.centre.add(v));
+        return new Cube(this.length, this.centre.add(v), this.colour);
     }
 
 }
