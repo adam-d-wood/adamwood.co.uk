@@ -99,7 +99,7 @@ function drawBuildingRow(start: Vector, end: Vector, n: number, display: Display
     for (let i=0; i < n; i++) {
         // let building = new Cube(width, start.add(stride.scale(i)))
         // building.draw(display);
-        drawBuilding(start.add(stride.scale(i)), width, Math.floor(30*Math.random()), colour, display);
+        drawBuilding(start.add(stride.scale(n-i-1)), width, Math.floor(30*Math.random()), colour, display);
         colour = (colour.add(i_colour)).round();
         console.log(colour)
     }    
