@@ -50,7 +50,7 @@ function main() {
         let y = -200;
         let start = new Vector([x, y, 200]);
         let end = new Vector([x, y, 210]);
-        drawBuildingRow(start, end, 100, display);
+        drawBuildingRow(start, end, 30, display);
     }
     // drawBuildingRow(new Vector([20, -10, 40]), new Vector([20, -10, 60]), 200, display);
     // drawBuildingRow(new Vector([-20, -10, 40]), new Vector([-20, -10, 60]), 200, display);

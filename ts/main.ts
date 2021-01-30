@@ -53,7 +53,7 @@ function main() {
         let y: number = -200
         let start: Vector = new Vector([x, y, 200]);
         let end: Vector = new Vector([x, y, 210]);
-        drawBuildingRow(start, end, 100, display);
+        drawBuildingRow(start, end, 30, display);
     }
 
     // drawBuildingRow(new Vector([20, -10, 40]), new Vector([20, -10, 60]), 200, display);
