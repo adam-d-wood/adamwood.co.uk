@@ -2,6 +2,9 @@ class Wireframe {
     getVertex(i) {
         return this.vertices[i];
     }
+    setVertex(i, v) {
+        this.vertices[i] = v;
+    }
     getEdge(i) {
         return this.edges[i];
     }

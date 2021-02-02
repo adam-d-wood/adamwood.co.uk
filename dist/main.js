@@ -40,18 +40,23 @@ function main() {
     //     line.lineJoinedPlot(display, colour);
     //     colour = (colour.add(i_colour)).round();
     // }
-    // cube.draw(display);
-    // cube2.draw(display)
-    const rows = 8;
-    const span = 400;
-    const step = span / rows;
-    for (let i = 0; i < rows; i++) {
-        let x = -span / 2 + (i + 0.5) * step;
-        let y = -200;
-        let start = new Vector([x, y, 200]);
-        let end = new Vector([x, y, 210]);
-        drawBuildingRow(start, end, 30, display);
+    let cube = new Cube(6, new Vector([0, 0, 10]), new Colour(255, 0, 0));
+    for (let i = 0; i < 1; i++) {
+        cube.translate(new Vector([0, 0, -10]));
+        cube.rotate(0, 0, 0.2);
+        cube.translate(new Vector([0, 0, 10]));
+        cube.draw(display);
     }
+    // const rows = 8;
+    // const span = 400;
+    // const step = span / rows;
+    // for (let i=0; i<rows; i++) {
+    //     let x: number = -span/2 + (i+0.5) * step
+    //     let y: number = -200
+    //     let start: Vector = new Vector([x, y, 200]);
+    //     let end: Vector = new Vector([x, y, 210]);
+    //     drawBuildingRow(start, end, 30, display);
+    // }
     // drawBuildingRow(new Vector([20, -10, 40]), new Vector([20, -10, 60]), 200, display);
     // drawBuildingRow(new Vector([-20, -10, 40]), new Vector([-20, -10, 60]), 200, display);
     // const x = t => t * Math.sin(t) + t/10;  

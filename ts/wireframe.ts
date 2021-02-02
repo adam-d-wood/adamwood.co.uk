@@ -8,6 +8,10 @@ class Wireframe {
         return this.vertices[i];
     }
 
+    setVertex(i: number, v:Vector) {
+        this.vertices[i] = v;
+    }
+
     private getEdge(i: number): number[] {
         return this.edges[i];
     }
