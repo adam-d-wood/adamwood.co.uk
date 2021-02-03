@@ -40,12 +40,29 @@ function main() {
     //     line.lineJoinedPlot(display, colour);
     //     colour = (colour.add(i_colour)).round();
     // }
-    let cube = new Cube(6, new Vector([0, 0, 10]), new Colour(255, 0, 0));
-    for (let i = 0; i < 1; i++) {
+    let cube = new Cube(6, new Vector([0, 0, 10]), Colour.getRandomColour());
+    let n = 5;
+    for (let i = 0; i < n; i++) {
         cube.translate(new Vector([0, 0, -10]));
-        cube.rotate(0, 0, 0.2);
+        cube.rotate(0, 0, 2 * Math.PI / n);
         cube.translate(new Vector([0, 0, 10]));
         cube.draw(display);
+    }
+    let anim = setInterval(frame, 20);
+    let t = 0;
+    function frame() {
+        if (t > 1000) {
+            clearInterval(anim);
+        }
+        else {
+            display.clear();
+            display.drawGrid();
+            cube.translate(new Vector([0, 0, -10]));
+            cube.rotate(0, 0.005, 0.01);
+            cube.translate(new Vector([0, 0, 10]));
+            cube.draw(display);
+            t += 0.02;
+        }
     }
     // const rows = 8;
     // const span = 400;
