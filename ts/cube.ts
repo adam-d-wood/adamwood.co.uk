@@ -12,6 +12,10 @@ class Cube extends Wireframe{
         this.colour = colour;
     }
 
+    getCentre(): Vector {
+        return this.centre;
+    }
+
     private initVertices(): Vector[] {
         let vertices: Vector[] = [];
         for (let i=0; i < 2; i++) {
@@ -79,6 +83,13 @@ class Cube extends Wireframe{
             console.log("new vertex: ", vertex)
         }
         console.log("vertices:", this.vertices)
+    }
+
+    rotate_about(yaw: number, pitch: number, roll: number, focus: Vector): void {
+        const move: Vector = new Vector([0, 0, 0]).sub(focus);
+        this.translate(move);
+        this.rotate(yaw, pitch, roll);
+        this.translate(move.scale(-1));
     }
 
 }

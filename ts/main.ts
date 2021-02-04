@@ -43,7 +43,8 @@ function main() {
     //     colour = (colour.add(i_colour)).round();
     // }
 
-    let cube = new Cube(6, new Vector([0, 0, 10]), Colour.getRandomColour());
+    let cube = new Cube(2, new Vector([0, 0, 10]), Colour.getRandomColour());
+    let centre: Vector = new Vector([0, 0, 7]);
     let n = 5;
     for (let i=0; i < n; i++) {
         cube.translate(new Vector([0, 0, -10]));
@@ -60,9 +61,11 @@ function main() {
         } else {
             display.clear();
             display.drawGrid();
-            cube.translate(new Vector([0, 0, -10]));
-            cube.rotate(0, 0.005, 0.01);
-            cube.translate(new Vector([0, 0, 10]));
+            // cube.translate(new Vector([0, 0, -10]));
+            // cube.rotate(0.01, 0.005, 0.01);
+            // cube.translate(new Vector([0, 0, 10]));
+            cube.rotate_about(0.00, 0.00, 0.01, centre);
+            cube.rotate_about(0.00, 0.03, 0.00, cube.getCentre());
             cube.draw(display);    
                 t += 0.02;
         }
