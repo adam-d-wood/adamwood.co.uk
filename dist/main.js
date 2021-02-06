@@ -61,8 +61,8 @@ function main() {
             // cube.translate(new Vector([0, 0, -10]));
             // cube.rotate(0.01, 0.005, 0.01);
             // cube.translate(new Vector([0, 0, 10]));
-            cube.rotate_about(0.00, 0.00, 0.02, centre);
-            cube.rotate_about(0.00, 0.03, 0.00, cube.getCentre());
+            // cube.rotate_about(0.00, 0.00, 0.02, centre);
+            cube.rotate_about(0.00, 0.00, 0.01, cube.getCentre());
             cube.draw(display);
             t += 0.02;
         }

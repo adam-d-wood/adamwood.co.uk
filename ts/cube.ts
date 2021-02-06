@@ -77,12 +77,22 @@ class Cube extends Wireframe{
         const rotMat: Matrix = yawMat.matMul(pitchMat).matMul(rollMat);
         for (let i=0; i < this.vertices.length; i++) {
             const vertex = this.getVertex(i);
-            console.log("old vertex: ", vertex);
             let vertexMat: Matrix = Matrix.fromEntries([vertex.entries]).matMul(rotMat);
             this.setVertex(i, vertexMat.getRow(0));
-            console.log("new vertex: ", vertex)
         }
-        console.log("vertices:", this.vertices)
+        // this.centre = Matrix.fromEntries([this.centre.entries]).matMul(rotMat).getRow(0);
+        this.updateCentre();
+        console.log("centre", this.centre);
+        // console.log("vertices:", this.vertices)
+    }
+
+    updateCentre(): void {
+        let sum: Vector = new Vector([0, 0, 0]);
+        for (let vertex of this.vertices) {
+            sum = sum.add(vertex);
+            console.log("sum", sum)
+        }
+        this.centre = sum.scale(1/this.vertices.length);
     }
 
     rotate_about(yaw: number, pitch: number, roll: number, focus: Vector): void {

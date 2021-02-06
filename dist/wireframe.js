@@ -11,16 +11,16 @@ class Wireframe {
     drawEdge(index, display) {
         const vertex_indices = this.getEdge(index);
         const start = this.getVertex(vertex_indices[0]);
-        console.log("start", start);
+        // console.log("start", start);
         const end = this.getVertex(vertex_indices[1]);
-        console.log("end", end);
+        // console.log("end", end);
         display.drawLine(start, end, this.colour, 4);
     }
     draw(display) {
-        console.log("called");
-        console.log(this.edges);
+        // console.log("called")
+        // console.log(this.edges)
         for (let i = 0; i < this.edges.length; i++) {
-            console.log("drawing");
+            // console.log("drawing")
             this.drawEdge(i, display);
         }
     }

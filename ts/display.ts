@@ -60,7 +60,7 @@ class Display {
         let imageArray: Uint8ClampedArray = imageData.data;
         for (let coord of table) {
             let displayCoord: number[] = this.toDisplayCoords(coord[0], coord[1]);
-            console.log("plotting", displayCoord);
+            // console.log("plotting", displayCoord);
             let index: number = this.coordToIndex(displayCoord);
             const colour = new Colour(255, 0, 0)
             imageArray[index] = colour.r;
