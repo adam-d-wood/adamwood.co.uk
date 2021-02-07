@@ -64,7 +64,7 @@ function main() {
             // cube.rotate_about(0.00, 0.00, 0.02, centre);
             cube.rotate_about(0.00, 0.00, 0.01, cube.getCentre());
             cube.draw(display);
-            t += 0.02;
+            t += 0.01;
         }
     }
     // const rows = 8;
