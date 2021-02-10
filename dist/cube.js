@@ -43,8 +43,8 @@ class Cube extends Wireframe {
         for (let i = 0; i < this.vertices.length; i++) {
             const vertex = this.getVertex(i);
             this.setVertex(i, vertex.add(v));
-            this.centre = this.centre.add(v);
         }
+        this.centre = this.centre.add(v);
     }
     rotate(yaw, pitch, roll) {
         const yawMat = Matrix.fromEntries([
@@ -68,8 +68,8 @@ class Cube extends Wireframe {
             let vertexMat = Matrix.fromEntries([vertex.entries]).matMul(rotMat);
             this.setVertex(i, vertexMat.getRow(0));
         }
-        // this.centre = Matrix.fromEntries([this.centre.entries]).matMul(rotMat).getRow(0);
-        this.updateCentre();
+        this.centre = Matrix.fromEntries([this.centre.entries]).matMul(rotMat).getRow(0);
+        // this.updateCentre();
         console.log("centre", this.centre);
         // console.log("vertices:", this.vertices)
     }
