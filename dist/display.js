@@ -6,8 +6,8 @@ class Display {
         this.width = this.canvas.width;
         this.height = this.canvas.height;
         this.ctx = canvas.getContext("2d");
-        this.bottomLeft = [-5, -5];
-        this.topRight = [5, 5];
+        this.bottomLeft = [-16, -9];
+        this.topRight = [16, 9];
     }
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

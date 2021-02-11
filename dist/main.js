@@ -41,6 +41,7 @@ function main() {
     //     colour = (colour.add(i_colour)).round();
     // }
     let cube = new Cube(2, new Vector([0, 0, 10]), Colour.getRandomColour());
+    let cube2 = new Cube(2, new Vector([0, 0, 10]), Colour.getRandomColour());
     let centre = new Vector([0, 0, 7]);
     let n = 5;
     for (let i = 0; i < n; i++) {
@@ -63,7 +64,10 @@ function main() {
             // cube.translate(new Vector([0, 0, 10]));
             cube.rotate_about(0.00, 0.02, 0.00, centre);
             cube.rotate_about(0.00, -0.04, 0.00, cube.getCentre());
+            cube2.rotate_about(0.00, -0.02, 0.00, centre);
+            cube2.rotate_about(0.00, 0.04, 0.00, cube2.getCentre());
             cube.draw(display);
+            cube2.draw(display);
             t += 0.001;
         }
     }
