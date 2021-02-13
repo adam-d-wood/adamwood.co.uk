@@ -42,6 +42,28 @@ class Display {
             this.drawLine2D(start2D, end2D, colour, width);
         }
     }
+    animateLine(start, end, colour, width, duration) {
+        const freq = 20;
+        const lineNum = duration / freq;
+        const segment = end.sub(start).scale(1 / lineNum);
+        // for (let i=0; i<lineNum; i++) {
+        //     this.drawLine(start, start.add(segment.scale(i+1)), colour, width);
+        // }
+        let anim = setInterval(frame, 20);
+        const self = this;
+        let i = 0;
+        function frame() {
+            if (i > lineNum) {
+                clearInterval(anim);
+            }
+            else {
+                self.clear();
+                self.drawGrid();
+                self.drawLine(start, start.add(segment.scale(i + 1)), colour, width);
+                i += 1;
+            }
+        }
+    }
     pixelPlot(table) {
         let imageData = this.ctx.getImageData(0, 0, this.width, this.height);
         let imageArray = imageData.data;

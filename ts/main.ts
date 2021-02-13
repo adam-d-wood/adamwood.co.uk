@@ -75,6 +75,9 @@ function main() {
                 t += 0.001;
         }
     }
+    // let s = new Vector([-10, 0, 20]);
+    // let e = new Vector([10, 0, 20]);
+    // display.animateLine(s, e, Colour.getRandomColour(), 3, 500)
 
     
     // const rows = 8;

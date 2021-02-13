@@ -55,6 +55,28 @@ class Display {
         }
     }
 
+    public animateLine(start: Vector, end: Vector, colour: Colour, width: number, duration: number) {
+        const freq: number = 20;
+        const lineNum: number = duration / freq;
+        const segment: Vector = end.sub(start).scale(1/lineNum);
+        // for (let i=0; i<lineNum; i++) {
+        //     this.drawLine(start, start.add(segment.scale(i+1)), colour, width);
+        // }
+        let anim = setInterval(frame, 20);
+        const self: Display = this;
+        let i: number = 0;
+        function frame(): void {
+            if (i > lineNum) {
+                clearInterval(anim);
+            } else {
+                self.clear();
+                self.drawGrid();
+                self.drawLine(start, start.add(segment.scale(i+1)), colour, width);
+                i += 1;
+            }
+        }
+    }
+
     public pixelPlot(table: number[][]): void {
         let imageData: ImageData = this.ctx.getImageData(0, 0, this.width, this.height);
         let imageArray: Uint8ClampedArray = imageData.data;
