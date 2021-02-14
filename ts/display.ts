@@ -118,6 +118,44 @@ class Display {
         }
     }
 
+    drawFloor(duration: number): void {
+        const gradient = this.ctx.createLinearGradient(0, 0, 0, this.height);
+        gradient.addColorStop(0, "#aaaaaa01");
+        gradient.addColorStop(0.5, "#fd11f4ff");
+        gradient.addColorStop(1, "#aaaaaa01");
+        this.ctx.strokeStyle = gradient;
+        this.ctx.lineWidth = 2;
+        const startPoints: Vector[] = [];
+        const endPoints: Vector[] = [];
+        const length: number = 100;
+        for (let i = -10; i =10; i++) {
+            const startPoint: Vector = new Vector([i, -10, 0]);
+            startPoints.push(startPoint);
+            const endPoint: Vector = new Vector([i, -10, length]);
+            endPoints.push(endPoint);
+        } 
+        const freq: number = 20;
+        const lineNum: number = duration / freq;
+        let anim = setInterval(frame, 20);
+        const self: Display = this;
+        let i: number = 0;
+        function frame(): void {
+            if (i > lineNum) {
+                clearInterval(anim);
+            } else {
+                self.clear();
+                // self.drawGrid();
+                for (let j=0; j<startPoints.length; j++) {
+                    let start: Vector = startPoints[j];
+                    let end: Vector = endPoints[j]
+                    let animEnd: Vector = end.sub(start).scale((i+1)/lineNum);
+                    self.drawLine(start, animEnd, new Colour(255, 0, 0), 3);
+                }
+                i += 1;
+            }
+        }
+    }
+
     public lineJoinedPlot(table: number[][], curveColour: Colour): void {
         this.ctx.strokeStyle = curveColour.toHexString();
         this.ctx.lineWidth = 3;

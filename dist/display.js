@@ -103,6 +103,44 @@ class Display {
             this.ctx.stroke();
         }
     }
+    drawFloor(duration) {
+        const gradient = this.ctx.createLinearGradient(0, 0, 0, this.height);
+        gradient.addColorStop(0, "#aaaaaa01");
+        gradient.addColorStop(0.5, "#fd11f4ff");
+        gradient.addColorStop(1, "#aaaaaa01");
+        this.ctx.strokeStyle = gradient;
+        this.ctx.lineWidth = 2;
+        const startPoints = [];
+        const endPoints = [];
+        const length = 100;
+        for (let i = -10; i = 10; i++) {
+            const startPoint = new Vector([i, -10, 0]);
+            startPoints.push(startPoint);
+            const endPoint = new Vector([i, -10, length]);
+            endPoints.push(endPoint);
+        }
+        const freq = 20;
+        const lineNum = duration / freq;
+        let anim = setInterval(frame, 20);
+        const self = this;
+        let i = 0;
+        function frame() {
+            if (i > lineNum) {
+                clearInterval(anim);
+            }
+            else {
+                self.clear();
+                // self.drawGrid();
+                for (let j = 0; j < startPoints.length; j++) {
+                    let start = startPoints[j];
+                    let end = endPoints[j];
+                    let animEnd = end.sub(start).scale((i + 1) / lineNum);
+                    self.drawLine(start, animEnd, new Colour(255, 0, 0), 3);
+                }
+                i += 1;
+            }
+        }
+    }
     lineJoinedPlot(table, curveColour) {
         this.ctx.strokeStyle = curveColour.toHexString();
         this.ctx.lineWidth = 3;
