@@ -50,30 +50,31 @@ function main() {
         cube.translate(new Vector([0, 0, 10]));
         cube.draw(display);
     }
-    // let anim = setInterval(frame, 20);
-    // let t= 0;
-    // function frame(): void {
-    //     if (t > 1000) {
-    //         clearInterval(anim);
-    //     } else {
-    //         display.clear();
-    //         display.drawGrid();
-    //         // cube.translate(new Vector([0, 0, -10]));
-    //         // cube.rotate(0.01, 0.005, 0.01);
-    //         // cube.translate(new Vector([0, 0, 10]));
-    //         cube.rotate_about(0.00, 0.02, 0.00, centre);
-    //         cube.rotate_about(0.00, -0.04, 0.00, cube.getCentre());
-    //         cube2.rotate_about(0.00, -0.02, 0.00, centre);
-    //         cube2.rotate_about(0.00, 0.04, 0.00, cube2.getCentre());
-    //         cube.draw(display);
-    //         cube2.draw(display);
-    //             t += 0.001;
-    //     }
-    // }
-    // let s = new Vector([-10, 0, 20]);
-    // let e = new Vector([10, 0, 20]);
+    let anim = setInterval(frame, 20);
+    let t = 0;
+    function frame() {
+        if (t > 1000) {
+            clearInterval(anim);
+        }
+        else {
+            display.clear();
+            display.drawGrid();
+            // cube.translate(new Vector([0, 0, -10]));
+            // cube.rotate(0.01, 0.005, 0.01);
+            // cube.translate(new Vector([0, 0, 10]));
+            cube.rotate_about(0.00, 0.02, 0.00, centre);
+            cube.rotate_about(0.00, -0.04, 0.00, cube.getCentre());
+            cube2.rotate_about(0.00, -0.02, 0.00, centre);
+            cube2.rotate_about(0.00, 0.04, 0.00, cube2.getCentre());
+            cube.draw(display);
+            cube2.draw(display);
+            t += 0.001;
+        }
+    }
+    let s = new Vector([-10, 0, 20]);
+    let e = new Vector([10, 0, 20]);
     // display.animateLine(s, e, Colour.getRandomColour(), 3, 500)
-    display.drawFloor(2000);
+    // display.drawFloor(2000);
     // const rows = 8;
     // const span = 400;
     // const step = span / rows;
