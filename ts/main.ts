@@ -42,17 +42,24 @@ function main() {
     //     line.lineJoinedPlot(display, colour);
     //     colour = (colour.add(i_colour)).round();
     // }
-
-    let cube = new Cube(2, new Vector([0, 0, 10]), Colour.getRandomColour());
-    let cube2 = new Cube(2, new Vector([0, 0, 10]), Colour.getRandomColour());
     let centre: Vector = new Vector([0, 0, 7]);
-    let n = 5;
-    for (let i=0; i < n; i++) {
-        cube.translate(new Vector([0, 0, -10]));
-        cube.rotate(0, 0, 2*Math.PI/n);
-        cube.translate(new Vector([0, 0, 10]));
-        cube.draw(display);    
+    let cubes: Cube[] = []
+    let k: number = 3;
+    for (let i=0; i<k; i++) {
+        let cube: Cube = new Cube(2, new Vector([0, 0, 10]), Colour.getRandomColour());
+        cube.rotate_about(0, 2*Math.PI/k, 0, centre);
+        cube.translate(new Vector([0, 0.2 * k, 0]))
+        cubes.push(cube);
     }
+    // let cube = new Cube(2, new Vector([0, 0, 10]), Colour.getRandomColour());
+    // let cube2 = new Cube(2, new Vector([0, 0, 10]), Colour.getRandomColour());
+    // let n = 5;
+    // for (let i=0; i < n; i++) {
+    //     cube.translate(new Vector([0, 0, -10]));
+    //     cube.rotate(0, 0, 2*Math.PI/n);
+    //     cube.translate(new Vector([0, 0, 10]));
+    //     cube.draw(display);    
+    // }
 
     let anim = setInterval(frame, 20);
     let t= 0;
@@ -65,14 +72,19 @@ function main() {
             // cube.translate(new Vector([0, 0, -10]));
             // cube.rotate(0.01, 0.005, 0.01);
             // cube.translate(new Vector([0, 0, 10]));
-            cube.rotate_about(0.00, 0.02, 0.00, centre);
-            cube.rotate_about(0.00, -0.04, 0.00, cube.getCentre());
-            cube2.rotate_about(0.00, -0.02, 0.00, centre);
-            cube2.rotate_about(0.00, 0.04, 0.00, cube2.getCentre());
+            // cube.rotate_about(0.00, 0.02, 0.00, centre);
+            // cube.rotate_about(0.00, -0.04, 0.00, cube.getCentre());
+            // cube2.rotate_about(0.00, -0.02, 0.00, centre);
+            // cube2.rotate_about(0.00, 0.04, 0.00, cube2.getCentre());
+            for (let cube of cubes) {
+                console.log("cube", cube)
+                cube.rotate_about(0, 0.02, 0, centre);
+                cube.draw(display);
+            }
 
-            cube.draw(display);
-            cube2.draw(display);
-                t += 0.001;
+            // cube.draw(display);
+            // cube2.draw(display);
+            t += 0.001;
         }
     }
     let s = new Vector([-10, 0, 20]);
