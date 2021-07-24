@@ -20,7 +20,10 @@ class Tetreahedron extends Polyhedron {
 
     private initVertices(): Vector[] {
         let vertices: Vector[] = [];
-        vertices.push(new Vector())
+        vertices.push(new Vector([1, 0, -1/Math.SQRT2]).scale(length/2));   
+        vertices.push(new Vector([-1, 0, -1/Math.SQRT2]).scale(length/2));   
+        vertices.push(new Vector([0, 1, 1/Math.SQRT2]).scale(length/2));
+        vertices.push(new Vector([0, -1, 1/Math.SQRT2]).scale(length/2));      
         return vertices;
     }
 
