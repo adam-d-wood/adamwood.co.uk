@@ -58,4 +58,9 @@ class Vector {
     magnitude(): number {
         return Math.sqrt(this.entries.map(x=>x*x).reduce((a, b)=>a+b))
     }
+
+    round(): Vector {
+        const newEntries = this.entries.map(x => Math.round(x));
+        return new Vector(newEntries);
+    }
 }

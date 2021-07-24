@@ -1,17 +1,48 @@
 $(function() {
-    main();
+    main2();
 });
+
+function main2(): void {
+
+    const grey: RGBColour = new RGBColour(25, 25, 25);
+    const byzantium: RGBColour = new RGBColour(104, 50, 87);
+
+    const canvas: HTMLElement = document.getElementById("display");
+    const display: Display = new Display(canvas, grey);
+    let space: Space3D = new Space3D();
+    let cube: Cube = new Cube(0.5, new Vector([0, 0, 3]), byzantium);
+    space.addObject(cube);
+    display.drawGrid();
+
+    let anim = setInterval(frame, 20);
+    let t= 0;
+    function frame(): void {
+        if (t > 1000) {
+            clearInterval(anim);
+        } else {
+            display.clear();
+            display.drawGrid();
+            cube.rotate_about(0, 0.02, 0.02, cube.getCentre());
+            cube.rotate_about(0, 0.02, 0, new Vector([0, 0, 4]))
+            cube.draw(display);
+            }
+
+            t += 0.001;
+        }
+
+    // space.drawObjects(display);
+}
 
 function main() {
     var canvas = document.getElementById("display");
-    const grey: Colour = new Colour(25, 25, 25);
-    const cream: Colour = new Colour(242, 247, 242);
+    const grey: RGBColour = new RGBColour(25, 25, 25);
+    const cream: RGBColour = new RGBColour(242, 247, 242);
     let display = new Display(canvas, grey);
     let f = (x, t) => Math.cos(Math.pow(x/2, 2) + t);
-    const byzantium: Colour = new Colour(104, 50, 87);
-    const fushia: Colour = new Colour(245, 26, 164);
-    const violet: Colour = new Colour(189, 64, 137);
-    const purple: Colour = new Colour(135, 92, 255);
+    const byzantium: RGBColour = new RGBColour(104, 50, 87);
+    const fushia: RGBColour = new RGBColour(245, 26, 164);
+    const violet: RGBColour = new RGBColour(189, 64, 137);
+    const purple: RGBColour = new RGBColour(135, 92, 255);
     const curve = new ParameterisedExplicitCurve(f, -5, 5, byzantium);
     let g = (x, t) => Math.cos(Math.sin(x)- t);
     let h = (x, t) => g(x, t) + f(x, t);
@@ -46,7 +77,7 @@ function main() {
     let cubes: Cube[] = []
     let k: number = 3;
     for (let i=0; i<k; i++) {
-        let cube: Cube = new Cube(2, new Vector([0, 0, 10]), Colour.getRandomColour());
+        let cube: Cube = new Cube(2, new Vector([0, 0, 10]), RGBColour.getRandomColour());
         cube.rotate_about(0, 2*Math.PI/k, 0, centre);
         cube.translate(new Vector([0, 0.2 * k, 0]))
         cubes.push(cube);
@@ -117,9 +148,9 @@ function main() {
 
 function getPhaseShiftedWaves(n: number): ParameterisedExplicitCurve[] {
     const step: number = Math.PI / (n);
-    const fushia: Colour = new Colour(245, 26, 164);
-    const byzantium: Colour = new Colour(104, 50, 87);
-    const silver: Colour = new Colour(194, 193, 194);
+    const fushia: RGBColour = new RGBColour(245, 26, 164);
+    const byzantium: RGBColour = new RGBColour(104, 50, 87);
+    const silver: RGBColour = new RGBColour(194, 193, 194);
     let curves: ParameterisedExplicitCurve[] = []
     for (let i=0; i < n; i++) {
         let f = (x, t) => Math.cos(x + step * i + t);
@@ -139,7 +170,7 @@ function drawBuilding(pos, width, n, colour, display) {
 }
 
 function drawBuildingRow(start: Vector, end: Vector, n: number, display: Display) {
-    let p_colour = Colour.getRandomColour();
+    let p_colour = RGBColour.getRandomColour();
     let c_colour = p_colour.get_inverse();
     let i_colour = (c_colour.sub(p_colour)).scale(1/n);
     let colour = p_colour;

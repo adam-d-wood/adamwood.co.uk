@@ -3,13 +3,13 @@ class ParameterisedExplicitCurve {
     public y: (x: number, t: number) => number;
     start: number;
     end: number;
-    colour: Colour;
+    colour: RGBColour;
 
     constructor(
         y: (x: number, t: number) => number,
         start: number,
         end: number,
-        colour: Colour) {
+        colour: RGBColour) {
         this.y = y;
         this.start = start;
         this.end = end;

@@ -68,7 +68,7 @@ class ParametricCurve3D {
         display.pixelPlot(table);
     }
 
-    lineJoinedPlot(display: Display, colour: Colour): void {
+    lineJoinedPlot(display: Display, colour: RGBColour): void {
         const table = this.getTable();
         display.lineJoinedPlot(table, colour);
     }

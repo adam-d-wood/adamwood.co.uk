@@ -1,6 +1,7 @@
 class Matrix {
 
     private entries: number[][];
+
     public cols: number;
     public rows: number;
 
@@ -39,6 +40,10 @@ class Matrix {
 
     getEntry(i: number, j: number): number {
         return this.entries[i][j];
+    }
+
+    setEntry(i: number, j: number, x: number): void {
+        this.entries[i][j] = x;
     }
 
     getRow(i: number): Vector {

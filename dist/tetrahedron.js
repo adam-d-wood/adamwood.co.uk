@@ -1,4 +1,4 @@
-class Tetreahedron extends Wireframe {
+class Tetreahedron extends Polyhedron {
     constructor(length, centre, colour) {
         super();
         this.length = length;

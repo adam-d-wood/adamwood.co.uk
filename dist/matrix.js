@@ -30,6 +30,9 @@ class Matrix {
     getEntry(i, j) {
         return this.entries[i][j];
     }
+    setEntry(i, j, x) {
+        this.entries[i][j] = x;
+    }
     getRow(i) {
         return new Vector(this.entries[i]);
     }

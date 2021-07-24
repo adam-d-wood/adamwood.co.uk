@@ -1,13 +1,16 @@
 class Display {
     constructor(canvas, backgroundColour) {
+        this.pixelsPerUnit = 200;
         this.canvas = canvas;
         this.backgroundColour = backgroundColour;
         this.canvas.style.backgroundColor = this.backgroundColour.toHexString();
-        this.width = this.canvas.width;
-        this.height = this.canvas.height;
+        this.width = this.canvas.getBoundingClientRect().width;
+        this.height = this.canvas.getBoundingClientRect().height;
+        this.canvas.width = this.width;
+        this.canvas.height = this.height;
         this.ctx = canvas.getContext("2d");
-        this.bottomLeft = [-16, -9];
-        this.topRight = [16, 9];
+        this.bottomLeft = [(-this.width / 2) / this.pixelsPerUnit, (-this.height / 2) / this.pixelsPerUnit];
+        this.topRight = [(this.width / 2) / this.pixelsPerUnit, (this.height / 2) / this.pixelsPerUnit];
     }
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -71,7 +74,7 @@ class Display {
             let displayCoord = this.toDisplayCoords(coord[0], coord[1]);
             // console.log("plotting", displayCoord);
             let index = this.coordToIndex(displayCoord);
-            const colour = new Colour(255, 0, 0);
+            const colour = new RGBColour(255, 0, 0);
             imageArray[index] = colour.r;
             imageArray[index + 1] = colour.g;
             imageArray[index + 2] = colour.b;
@@ -86,21 +89,11 @@ class Display {
         gradient.addColorStop(1, "#aaaaaa01");
         this.ctx.strokeStyle = gradient;
         this.ctx.lineWidth = 2;
-        for (let i = this.bottomLeft[0]; i < this.topRight[0]; i++) {
-            this.ctx.beginPath();
-            let top = this.toDisplayCoords(i, this.topRight[1]);
-            this.ctx.moveTo(top[0], top[1]);
-            let bottom = this.toDisplayCoords(i, this.bottomLeft[1]);
-            this.ctx.lineTo(bottom[0], bottom[1]);
-            this.ctx.stroke();
-        }
-        for (let i = this.bottomLeft[1]; i < this.topRight[1]; i++) {
-            this.ctx.beginPath();
-            let left = this.toDisplayCoords(this.bottomLeft[0], i);
-            this.ctx.moveTo(left[0], left[1]);
-            let right = this.toDisplayCoords(this.topRight[0], i);
-            this.ctx.lineTo(right[0], right[1]);
-            this.ctx.stroke();
+        for (let i = 0; i < this.topRight[0]; i++) {
+            this.drawLine2D(new Vector([i, this.topRight[1]]), new Vector([i, this.bottomLeft[1]]), new RGBColour(100, 100, 100), 2);
+            this.drawLine2D(new Vector([-i, this.topRight[1]]), new Vector([-i, this.bottomLeft[1]]), new RGBColour(100, 100, 100), 2);
+            this.drawLine2D(new Vector([this.bottomLeft[0], i]), new Vector([this.topRight[0], i]), new RGBColour(100, 100, 100), 2);
+            this.drawLine2D(new Vector([this.bottomLeft[0], -i]), new Vector([this.topRight[0], -i]), new RGBColour(100, 100, 100), 2);
         }
     }
     drawFloor(duration) {
@@ -135,7 +128,7 @@ class Display {
                     let start = startPoints[j];
                     let end = endPoints[j];
                     let animEnd = end.sub(start).scale((i + 1) / lineNum);
-                    self.drawLine(start, animEnd, new Colour(255, 0, 0), 3);
+                    self.drawLine(start, animEnd, new RGBColour(255, 0, 0), 3);
                 }
                 i += 1;
             }
@@ -157,17 +150,23 @@ class Display {
         return x * 4 + y * this.width * 4;
     }
     toDisplayCoords(x, y) {
-        const newX = this.round((x - this.bottomLeft[0]) / this.getXUnitsPerPixel());
-        const inverseY = (y - this.bottomLeft[1]) / this.getYUnitsPerPixel();
-        const newY = this.round(this.height - inverseY);
+        // const newX: number = this.round((x - this.bottomLeft[0]) / this.getXUnitsPerPixel());
+        const midX = this.width / 2;
+        const newX = this.round(midX + x * this.pixelsPerUnit);
+        const midY = this.height / 2;
+        // const inverseY: number = (y - this.bottomLeft[1]) / this.getYUnitsPerPixel();
+        // const newY: number = this.round(this.height - inverseY);
+        const newY = this.round(midY - y * this.pixelsPerUnit);
         return [newX, newY];
     }
     getXUnitsPerPixel() {
         const span = this.topRight[0] - this.bottomLeft[0];
+        // return span / 100;
         return span / this.width;
     }
     getYUnitsPerPixel() {
         const span = this.topRight[1] - this.bottomLeft[1];
+        // return span / 1000;
         return span / this.height;
     }
     round(n) {
