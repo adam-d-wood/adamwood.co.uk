@@ -4,13 +4,16 @@ $(function () {
 function main2() {
     const grey = new RGBColour(25, 25, 25);
     const byzantium = new RGBColour(104, 50, 87);
+    const aqua = new RGBColour(0, 255, 255);
     const canvas = document.getElementById("display");
     const display = new Display(canvas, grey);
     let space = new Space3D();
     let cube = new Cube(0.5, new Vector([0, 0, 3]), byzantium);
-    let tetr = new Tetrahedron(1, new Vector([0, 0, 4]), byzantium);
+    let tetr = new Tetrahedron(0.5, new Vector([0, 0, 3]), aqua);
+    let sphere = new Sphere(10, new Vector([0, 0, 0]), aqua);
     space.addObject(cube);
     space.addObject(tetr);
+    space.addObject(sphere);
     display.drawGrid();
     let anim = setInterval(frame, 20);
     let t = 0;
@@ -23,13 +26,13 @@ function main2() {
             display.drawGrid();
             cube.rotate_about(0, 0.02, 0.02, cube.getCentre());
             cube.rotate_about(0, 0.02, 0, new Vector([0, 0, 4]));
-            tetr.rotate_about(0.02, 0.02, 0.02, new Vector([0, 0, 4]));
-            cube.draw(display);
-            tetr.draw(display);
+            tetr.rotate_about(0, 0.02, 0, new Vector([0, 0, 4]));
+            tetr.rotate_about(0, -0.08, 0, tetr.getCOM());
+            sphere.rotate_about(0, -0.002, 0.002, sphere.getCOM());
+            space.drawObjects(display);
         }
         t += 0.001;
     }
-    space.drawObjects(display);
 }
 function main() {
     var canvas = document.getElementById("display");

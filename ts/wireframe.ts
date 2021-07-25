@@ -71,5 +71,12 @@ class Polyhedron {
         this.translate(move.scale(-1));
     }
 
-
+    public getCOM(): Vector {
+        let sum: Vector = new Vector([0, 0, 0]);
+        for (let vertex of this.vertices) {
+            sum = sum.add(vertex);
+        }
+        sum = sum.scale(1000).round().scale(0.001);
+        return sum.scale(1/this.vertices.length);
+    }
 }
