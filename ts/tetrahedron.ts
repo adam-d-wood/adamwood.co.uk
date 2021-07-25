@@ -1,4 +1,4 @@
-class Tetreahedron extends Polyhedron {
+class Tetrahedron extends Polyhedron {
 
     private length: number;
     private centre: Vector;
@@ -10,7 +10,7 @@ class Tetreahedron extends Polyhedron {
         this.colour = colour;
         this.vertices = this.initVertices();
         this.edges = this.initEdges();
-        this.colour = colour;
+        this.translate(centre);
     }
 
     getCentre(): Vector {
@@ -20,10 +20,12 @@ class Tetreahedron extends Polyhedron {
 
     private initVertices(): Vector[] {
         let vertices: Vector[] = [];
-        vertices.push(new Vector([1, 0, -1/Math.SQRT2]).scale(length/2));   
-        vertices.push(new Vector([-1, 0, -1/Math.SQRT2]).scale(length/2));   
-        vertices.push(new Vector([0, 1, 1/Math.SQRT2]).scale(length/2));
-        vertices.push(new Vector([0, -1, 1/Math.SQRT2]).scale(length/2));      
+        vertices.push((new Vector([1, 0, -1/Math.SQRT2])));   
+        vertices.push((new Vector([-1, 0, -1/Math.SQRT2])));   
+        vertices.push((new Vector([0, 1, 1/Math.SQRT2])));
+        vertices.push((new Vector([0, -1, 1/Math.SQRT2])));    
+        vertices = vertices.map(x => x.scale(this.length/2)); 
+        console.log("tet vertices", vertices);
         return vertices;
     }
 
@@ -31,15 +33,11 @@ class Tetreahedron extends Polyhedron {
         console.log("initialising edges")
         let edges: number[][] = []
         for (let i=0; i<this.vertices.length; i++) {
-            for (let j=i; j<this.vertices.length; j++) {
-                let vertex1: Vector = this.vertices[i];
-                let vertex2: Vector = this.vertices[j];
-                if (vertex1.sub(vertex2).magnitude() == this.length) {
-                    edges.push([i, j])
-                }
+            for (let j=i+1; j<this.vertices.length; j++) {
+                edges.push([i, j])
             }
         }
-        console.log("edges: ")
+        console.log("edges: ", edges)
         return edges;
     }
 

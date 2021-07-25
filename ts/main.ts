@@ -11,9 +11,10 @@ function main2(): void {
     const display: Display = new Display(canvas, grey);
     let space: Space3D = new Space3D();
     let cube: Cube = new Cube(0.5, new Vector([0, 0, 3]), byzantium);
+    let tetr: Tetrahedron = new Tetrahedron(1, new Vector([0, 0, 4]), byzantium);
     space.addObject(cube);
+    space.addObject(tetr);
     display.drawGrid();
-
     let anim = setInterval(frame, 20);
     let t= 0;
     function frame(): void {
@@ -24,13 +25,15 @@ function main2(): void {
             display.drawGrid();
             cube.rotate_about(0, 0.02, 0.02, cube.getCentre());
             cube.rotate_about(0, 0.02, 0, new Vector([0, 0, 4]))
+            tetr.rotate_about(0.02, 0.02, 0.02, new Vector([0, 0, 4]));
             cube.draw(display);
+            tetr.draw(display);
             }
 
             t += 0.001;
         }
 
-    // space.drawObjects(display);
+    space.drawObjects(display);
 }
 
 function main() {
